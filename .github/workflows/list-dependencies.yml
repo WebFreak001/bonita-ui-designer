@@ -46,7 +46,8 @@ jobs:
         run: |
           git checkout -B doc/add-bonita-ui-designer-repositories-dependencies-${{ github.event.inputs.bonitaMinorVersion }}
           cp -f backend/webapp/target/bonita-ui-designer-dependencies.adoc bonita-doc/modules/ROOT/pages/bonita-ui-designer-dependencies.adoc
-          git add .
+          cd bonita-doc
+          git add modules/ROOT/pages/bonita-ui-designer-dependencies.adoc
           git commit -m "chore(dependencies): Adding Bonita UI-Designer dependencies ${{ github.event.inputs.bonitaMinorVersion }}"
           git push
 

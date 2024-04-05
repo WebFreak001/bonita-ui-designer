@@ -44,9 +44,9 @@ jobs:
       
       - name: Pushes dependencies file to bonita-doc
         run: |
-          git checkout -B doc/add-bonita-ui-designer-repositories-dependencies-${{ github.event.inputs.bonitaMinorVersion }}
           cp -f backend/webapp/target/bonita-ui-designer-dependencies.adoc bonita-doc/modules/ROOT/pages/bonita-ui-designer-dependencies.adoc
           cd bonita-doc
+          git checkout -B doc/add-bonita-ui-designer-repositories-dependencies-${{ github.event.inputs.bonitaMinorVersion }}
           git add modules/ROOT/pages/bonita-ui-designer-dependencies.adoc
           git commit -m "chore(dependencies): Adding Bonita UI-Designer dependencies ${{ github.event.inputs.bonitaMinorVersion }}"
           git push

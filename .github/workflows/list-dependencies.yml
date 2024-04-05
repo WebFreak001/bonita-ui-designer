@@ -5,11 +5,10 @@ on:
     inputs:
       tagVersion:
         description: keep empty to run report on input ref branch
-        default:
         required: false
       bonitaMinorVersion:
         description: Enter Bonita minor version
-        default: 2021.1
+        default: "2021.1"
         required: true
 
 jobs:
@@ -36,7 +35,7 @@ jobs:
       - name: Pushes dependencies file to bonita-doc
         uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.BONITA_CI_PAT }}
         with:
           source_file: 'backend/webapp/target/bonita-ui-designer-dependencies.adoc'
           destination_repo: 'bonitasoft/bonita-doc'
@@ -49,7 +48,7 @@ jobs:
       - name: Create new PR on bonita-doc
         shell: bash
         env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          API_TOKEN_GITHUB: ${{ secrets.BONITA_CI_PAT }}
         run: |
           # make file runnable, might not be necessary
           url="https://api.github.com/repos/bonitasoft/bonita-doc/pulls"

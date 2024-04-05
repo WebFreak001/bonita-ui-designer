@@ -33,7 +33,7 @@ jobs:
       - name: Generate reports
         run: ./mvnw package -DskipTests -Pdependencies -DbonitaMinorVersion=${{ github.event.inputs.bonitaMinorVersion }}
       - name: Pushes dependencies file to bonita-doc
-        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.BONITA_CI_PAT }}
         with:

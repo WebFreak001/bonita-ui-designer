@@ -43,13 +43,13 @@ jobs:
           keeper-secret-config: ${{ secrets.KSM_CONFIG }}
       
       - name: Pushes dependencies file to bonita-doc
+        working-directory: bonita-doc
         run: |
-          cp -f backend/webapp/target/bonita-ui-designer-dependencies.adoc bonita-doc/modules/ROOT/pages/bonita-ui-designer-dependencies.adoc
-          cd bonita-doc
           git checkout -B doc/add-bonita-ui-designer-repositories-dependencies-${{ github.event.inputs.bonitaMinorVersion }}
+           cp -f ../backend/webapp/target/bonita-ui-designer-dependencies.adoc modules/ROOT/pages/bonita-ui-designer-dependencies.adoc
           git add modules/ROOT/pages/bonita-ui-designer-dependencies.adoc
           git commit -m "chore(dependencies): Adding Bonita UI-Designer dependencies ${{ github.event.inputs.bonitaMinorVersion }}"
-          git push
+          git push origin doc/add-bonita-ui-designer-repositories-dependencies-${{ github.event.inputs.bonitaMinorVersion }}
 
       - name: Create new PR on bonita-doc
         shell: bash
